@@ -5,18 +5,18 @@ class Solution {
         for(int i=0;i<nums.length;i++){
             sum+=nums[i];
         }
-        int target=0;
+        // int target=0;
         if(sum%2 ==0 ){
-            target = sum/2;
+            sum = sum/2;
         }
         else{
             return false;
         }
 
 
-        Boolean [][]dp = new Boolean[nums.length+1][target+1];
+        Boolean [][]dp = new Boolean[nums.length+1][sum+1];
 
-        return solve(0,target, nums,dp);  
+        return solve(0,sum, nums,dp);  
     }
 
     public boolean solve(int i,int target , int[] nums, Boolean [][]dp){
