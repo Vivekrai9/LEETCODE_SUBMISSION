@@ -1,28 +1,35 @@
 class Solution {
     public int numberOfWays(String corridor) {
 
-        long MOD = 1_000_000_007;
+        int MOD = 1_000_000_007;
+        int seat = 0;
+        int plant = 0;
+        long way = 1;
 
-        int seats = 0;
-        long ways = 1;
-        int plants = 0;
+        for(char ch : corridor.toCharArray()) {
 
-        for (char c : corridor.toCharArray()) {
+            if(ch == 'S') {
+                seat++;
 
-            if (c == 'S') {
-                seats++;
+           
+                if(seat > 2 && seat % 2 == 1) {
 
-                if (seats > 2 && seats % 2 == 1) {
-                    ways = (ways * (plants + 1)) % MOD;
-                    plants = 0;
+                    way = (way * (plant + 1)) % MOD;
+                    plant = 0;
                 }
-            } else {
-                if (seats >= 2 && seats % 2 == 0) {
-                    plants++;
+            }
+
+            else { 
+
+                if(seat >= 2 && seat % 2 == 0) {
+                    plant++;
                 }
             }
         }
 
-        return seats % 2 == 0 && seats > 0 ? (int) ways : 0;
+        if(seat > 0 && seat % 2 == 0)
+            return (int) way;
+
+        return 0;
     }
 }
