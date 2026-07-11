@@ -14,7 +14,7 @@ class Solution {
         ListNode dummy = new ListNode(0);
         ListNode tail = dummy;
 
-        // head= head.next;
+        head= head.next;
         int sum=0;
 
         while(head != null){
@@ -33,7 +33,8 @@ class Solution {
         }
 
 
-        return dummy.next.next;
+        // return dummy.next.next;
+         return dummy.next;
         
     }
 }
