@@ -13,25 +13,25 @@ class Solution {
             right--;
         }
 
-        // StringBuilder res = new StringBuilder();
+        StringBuilder res = new StringBuilder();
 
-        // for(String word : str){
-        //     if(! word.isEmpty()){
+        for(String word : str){
+            if(! word.isEmpty()){
 
-        //         if(res.length() > 0){
-        //             res.append(" ");
-        //         }
-
-
-        //         res.append(word);
-
-        //     }
-        // }
+                if(res.length() > 0){
+                    res.append(" ");
+                }
 
 
-        // return res.toString();    
+                res.append(word);
+
+            }
+        }
 
 
-        return String.join(" ", str);   
+        return res.toString();    
+
+
+        // return String.join(" ", str);   
     }
 }
