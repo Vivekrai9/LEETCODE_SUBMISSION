@@ -1,34 +1,33 @@
-import java.util.*;
-
 class Solution {
     public boolean wordBreak(String s, List<String> wordDict) {
-        Set<String> st = new HashSet<>(wordDict);
-
-        int n= s.length();
-        Boolean [] dp = new Boolean[n];
-
-        // Arrays.fill(dp , false);
-
-        return solve(0,s,st,n,dp);
+        Set<String> set = new HashSet<>(wordDict);
+        Boolean dp[] = new Boolean[s.length()];
+        return solve(0,s,set,dp);
     }
 
-    public boolean solve(int i,String s, Set<String> st, int n, Boolean [] dp){
-        if(i == n ) return true;
 
-        StringBuilder sb = new StringBuilder();
+    public boolean solve( int i, String s,Set<String> dict,Boolean dp[]){
+        if(i == s.length()){
+            return true;
+
+        }
 
         if(dp[i] != null) return dp[i];
 
-        for(int j=i;j<n;j++){
-            sb.append(s.charAt(j));
-            
-            if(st.contains(sb.toString()) ){
-                if(solve(j+1,s,st,n,dp)){
-                    return dp[i]=true;
-                }
-            }
+        if(dict.contains(s)){
+            return true;
         }
 
-        return dp[i]=false;
+        for(int l=i+1; l<=s.length();l++){
+            String temp = s.substring(i,l);
+
+            if(dict.contains(temp) && solve(l , s,dict,dp))
+                return dp[i]= true;
+        }
+
+
+        return dp[i]= false;
     }
+
+    
 }
